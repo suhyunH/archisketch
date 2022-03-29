@@ -1,12 +1,17 @@
-import React, { useContext, useEffect} from 'react'
+import React, { MouseEventHandler, useContext, useEffect, useState} from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
 import { CardContext, ImageContext } from '../misc/useContext';
+import HandleBtn from './HandleBtn';
+import DownloadBtn from './HandleBtn/DownloadBtn';
+import RemoveBtn from './HandleBtn/RemoveBtn';
 
 
 function ImageCard() {
     const { state, setState }= useContext(ImageContext);
     const {cards, setCards} = useContext(CardContext);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [dropId, setDropId] = useState<number>();
     
     const onChecked = (e:React.ChangeEvent<HTMLInputElement>)=>{
         let checkedNum= parseInt(e.target.id)
@@ -16,11 +21,18 @@ function ImageCard() {
                 setCards(cards.filter((i)=>i!==checkedNum));
             }
     }
+    const onOptionClick=(e:React.MouseEvent<HTMLInputElement>)=>{
+        const target = e.target as Element;
+        setDropId(parseInt(target.id))
+        setIsOpen(!isOpen)
+    }
+
     useEffect(()=>{
         if(cards?.length===0){
             setCards(null);
         }
     },[cards])
+
   return (
   <>
         {state.map((_, idx)=>
@@ -30,12 +42,21 @@ function ImageCard() {
                     <span className='card-view'>일인칭 뷰어</span>
                 </div>
                 <div className='card-hover-container'>
-                    <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>
+                    <Link to={`/image/${idx}`}>
                         <div className="card-hover"></div>
                     </Link>
                     <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`} checked={cards?.includes(parseInt(`${idx}`))}/>
-                    <button className='card-option' type='button'>...</button>
+                    <input id={`${idx}`} className='card-option' type="button" onClick={onOptionClick} value="..."/>
+                    { isOpen&&dropId===idx &&
+                    <>
+                    <div className={`option-dropdown`}>
+                        <DownloadBtn chosenIdx={[parseInt(`${idx}`)]} isDrop/>
+                        <RemoveBtn chosenIdx={[parseInt(`${idx}`)]} isDrop/>
+                    </div>
+                    </>
+                    }
                 </div>
+                   
             </li>
         )}
         </>

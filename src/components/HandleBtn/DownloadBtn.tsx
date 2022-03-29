@@ -5,9 +5,9 @@ import { CloudDownload } from '@material-ui/icons';
 
 interface DownProps{
     chosenIdx : number[]
-    isDashboard?:boolean
+    isDrop?:boolean
 }
-function DownloadBtn({chosenIdx}:DownProps) {
+function DownloadBtn({chosenIdx, isDrop}:DownProps) {
   const { state, setState }= useContext(ImageContext);
     
   const setUrl = async (url:string)=>{
@@ -33,7 +33,7 @@ function DownloadBtn({chosenIdx}:DownProps) {
         };
   return (
     <>
-        <button className='down-btn' type='button' onClick={downloadImage}>  <CloudDownload/> </button>
+        <button className='down-btn' type='button' onClick={downloadImage}> {isDrop?'다운로드': <CloudDownload/>} </button>
     </>
   )
 }

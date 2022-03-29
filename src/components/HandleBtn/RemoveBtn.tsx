@@ -4,9 +4,10 @@ import { CardContext, ImageContext } from '../../misc/useContext';
 import "../../scss/modal.scss"
 interface RemoveProps{
   chosenIdx : number[];
+  isDrop?:boolean
 }
 
-function RemoveBtn({chosenIdx }:RemoveProps) {
+function RemoveBtn({chosenIdx, isDrop }:RemoveProps) {
   const { state, setState }= useContext(ImageContext);
   const {cards, setCards} = useContext(CardContext);
   const [open, setOpen] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function RemoveBtn({chosenIdx }:RemoveProps) {
       id.map(i=>newState.splice(i,1));
       setState(newState);
       setCards(null)
+      setOpen(false);
   }
 
   return (
@@ -44,7 +46,7 @@ function RemoveBtn({chosenIdx }:RemoveProps) {
         </div>
     </div>
     }
-    <button type='button' onClick={onToggle}><Delete /></button>
+    <button type='button' onClick={onToggle}>{isDrop? '삭제' :<Delete />}</button>
     </>
   )
 }

@@ -21,7 +21,7 @@ function HandleBtn({clickedSlide}:HandleProps) {
 
   return (
       <>
-      <DownloadBtn chosenIdx={chosenIdx} isDashboard/> 
+      <DownloadBtn chosenIdx={chosenIdx}/> 
       <RemoveBtn chosenIdx={chosenIdx} />
       </>
   )
