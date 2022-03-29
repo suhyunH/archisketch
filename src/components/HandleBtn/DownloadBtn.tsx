@@ -26,7 +26,7 @@ function DownloadBtn({isDrop}:DownProps) {
       let chosen;
       if(cards){
         chosen = cards
-      } else if(count){
+      } else{
         chosen = [count]
       }
         chosen?.map(async (i)=> {

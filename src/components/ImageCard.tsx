@@ -12,7 +12,7 @@ function ImageCard() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropId, setDropId] = useState<number>();
     const {count, setCount} = useContext(CounterContext)
-    
+
     const onChecked = (e:React.ChangeEvent<HTMLInputElement>)=>{
         let checkedNum= parseInt(e.target.id)
             if(!cards?.includes(checkedNum)){
@@ -43,7 +43,7 @@ function ImageCard() {
                     <span className='card-view'>일인칭 뷰어</span>
                 </div>
                 <div className='card-hover-container'>
-                    <Link to={`/image/${idx}`} onClick={()=>{setCount(idx)}}>
+                    <Link to={`/image/${(state[idx]._id).split("/")[6]}`} onClick={()=>{setCount(idx)}}>
                         <div className="card-hover"></div>
                     </Link>
                     <input className='checkbox' 

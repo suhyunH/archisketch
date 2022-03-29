@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react'
 import { CardContext, CounterContext, ImageContext } from '../../misc/useContext';
 import "../../scss/modal.scss"
 interface RemoveProps{
-  // chosenIdx : number[];
   isDrop?:boolean
   setIsOpen? :(v: boolean) => void 
 }
@@ -22,7 +21,7 @@ function RemoveBtn({ isDrop , setIsOpen}:RemoveProps) {
       const newState = [...state]
       if(cards){
         cards.map(i=>newState.splice(i,1));
-      }else if(count){
+      }else{
         newState.splice(count,1);
       }
       setState(newState);
