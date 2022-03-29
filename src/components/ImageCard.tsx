@@ -41,7 +41,7 @@ function ImageCard() {
                     <span className='card-view'>일인칭 뷰어</span>
                 </div>
                 <div className='card-hover-container'>
-                    <Link to={`/image/${idx}`}>
+                    <Link to={{pathname:`/image/${(state[idx]._id).split('/')[6]}`, search:`${idx}`}}>
                         <div className="card-hover"></div>
                     </Link>
                     <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`} checked={cards?.includes(parseInt(`${idx}`))}/>
