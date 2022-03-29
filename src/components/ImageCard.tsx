@@ -44,29 +44,32 @@ function ImageCard() {
                     <Link to={{pathname:`/image/${(state[idx]._id).split('/')[6]}`, search:`${idx}`}}>
                         <div className="card-hover"></div>
                     </Link>
-                    <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`} checked={cards?.includes(parseInt(`${idx}`))}/>
-                    <input id={`${idx}`} className='card-option' type="button" onClick={onOptionClick} value="..."/>
+                    <input className='checkbox' 
+                           type="checkbox" 
+                           onChange={onChecked} 
+                           id={`${idx}`} 
+                           checked={cards?.includes(parseInt(`${idx}`)) || false}/>
+                    
+                    <input id={`${idx}`} 
+                           className='card-option' 
+                           type="button" 
+                           onClick={onOptionClick} 
+                           value="..."/>
+                    
                     { isOpen&&dropId===idx &&
-                    <>
                     <div className={`option-dropdown`}>
                         <DownloadBtn chosenIdx={[parseInt(`${idx}`)]} isDrop/>
                         <RemoveBtn 
-                        chosenIdx={[parseInt(`${idx}`)]} 
-                        isDrop
-                        setIsOpen={(v: boolean) => {setIsOpen(v)}}
+                            chosenIdx={[parseInt(`${idx}`)]} 
+                            isDrop
+                            setIsOpen={(v: boolean) => {setIsOpen(v)}}
                         />
                     </div>
-                    </>
                     }
                 </div>
-                   
             </li>
         )}
         </>
-
-  
-    
-  )
-}
+  )}
 
 export default ImageCard
