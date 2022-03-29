@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState} from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
-import { CardContext, ImageContext } from '../misc/useContext';
+import { CardContext, CounterContext, ImageContext } from '../misc/useContext';
 import DownloadBtn from './HandleBtn/DownloadBtn';
 import RemoveBtn from './HandleBtn/RemoveBtn';
 
@@ -11,6 +11,7 @@ function ImageCard() {
     const {cards, setCards} = useContext(CardContext);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [dropId, setDropId] = useState<number>();
+    const {count, setCount} = useContext(CounterContext)
     
     const onChecked = (e:React.ChangeEvent<HTMLInputElement>)=>{
         let checkedNum= parseInt(e.target.id)
@@ -24,6 +25,7 @@ function ImageCard() {
         const target = e.target as Element;
         setDropId(parseInt(target.id))
         setIsOpen(!isOpen)
+        setCount(parseInt(target.id));
     }
 
     useEffect(()=>{
@@ -41,7 +43,7 @@ function ImageCard() {
                     <span className='card-view'>일인칭 뷰어</span>
                 </div>
                 <div className='card-hover-container'>
-                    <Link to={{pathname:`/image/${(state[idx]._id).split('/')[6]}`, search:`${idx}`}}>
+                    <Link to={`/image/${idx}`} onClick={()=>{setCount(idx)}}>
                         <div className="card-hover"></div>
                     </Link>
                     <input className='checkbox' 
@@ -58,11 +60,8 @@ function ImageCard() {
                     
                     { isOpen&&dropId===idx &&
                     <div className={`option-dropdown`}>
-                        <DownloadBtn chosenIdx={[parseInt(`${idx}`)]} isDrop/>
-                        <RemoveBtn 
-                            chosenIdx={[parseInt(`${idx}`)]} 
-                            isDrop
-                            setIsOpen={(v: boolean) => {setIsOpen(v)}}
+                        <DownloadBtn isDrop/>
+                        <RemoveBtn isDrop setIsOpen={(v: boolean) => {setIsOpen(v)}}
                         />
                     </div>
                     }

@@ -44,3 +44,22 @@ export const SelectedCardsProvider = ({children}:SelectedCardsProviderProps)=>{
 
 }
 
+//
+type CounterProviderProps={
+    children : React.ReactNode
+}
+type CounterProps={
+    count: number | null;
+    setCount: React.Dispatch<React.SetStateAction<number | null>>
+}
+
+export const CounterContext = createContext<CounterProps>({} as CounterProps)
+
+export const CounterProvider = ({children}:CounterProviderProps)=>{
+    const [count, setCount] = useState<number | null>(null);
+    return <CounterContext.Provider value={{ count, setCount}}>
+        {children}
+    </CounterContext.Provider>
+
+}
+

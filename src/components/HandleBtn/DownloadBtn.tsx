@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
-import { ImageContext } from '../../misc/useContext';
+import { CardContext, CounterContext, ImageContext } from '../../misc/useContext';
 import { CloudDownload } from '@material-ui/icons';
 
 
 interface DownProps{
-    chosenIdx : number[]
     isDrop?:boolean
 }
-function DownloadBtn({chosenIdx, isDrop}:DownProps) {
+function DownloadBtn({isDrop}:DownProps) {
   const { state, setState }= useContext(ImageContext);
+  const {count, setCount} = useContext(CounterContext);
+  const {cards, setCards} = useContext(CardContext);
+   
     
   const setUrl = async (url:string)=>{
       return fetch(url)
@@ -21,7 +23,13 @@ function DownloadBtn({chosenIdx, isDrop}:DownProps) {
     }
 
     const downloadImage = () => {
-        chosenIdx.map(async i=> {
+      let chosen;
+      if(cards){
+        chosen = cards
+      } else if(count){
+        chosen = [count]
+      }
+        chosen?.map(async (i)=> {
             const a = document.createElement("a");
             a.style.display = "none";
             a.href = await setUrl(state[i]._id);
@@ -30,6 +38,7 @@ function DownloadBtn({chosenIdx, isDrop}:DownProps) {
             a.click();
             document.body.removeChild(a);
         })
+       
         };
   return (
     <>

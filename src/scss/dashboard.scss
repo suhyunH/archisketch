@@ -75,25 +75,3 @@
     margin-left: 10px;
   }
 }
-
-.spinner {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  height: 100vh;
-  width: 100vh;
-  animation: spin 1s linear infinite;
-  svg {
-    width: 100%;
-    fill: $gray;
-  }
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}

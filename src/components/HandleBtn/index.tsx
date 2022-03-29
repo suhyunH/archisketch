@@ -2,27 +2,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import DownloadBtn from './DownloadBtn';
 import '../../scss/dashboard.scss'
 import RemoveBtn from './RemoveBtn';
-import { CardContext } from '../../misc/useContext';
+import { CardContext, CounterContext } from '../../misc/useContext';
 
-interface HandleProps {
-    clickedSlide?: number,
-}
 
-function HandleBtn({clickedSlide}:HandleProps) {
-  const [chosenIdx, setChosenIdx]= useState<number[]>([])
-  const {cards, setCards} =useContext(CardContext)
-  useEffect(()=>{
-    if(clickedSlide){
-      setChosenIdx([clickedSlide])
-    }else if(cards){
-      setChosenIdx([...cards]);
-    }
-  },[setChosenIdx])
+function HandleBtn() {
 
   return (
       <>
-      <DownloadBtn chosenIdx={chosenIdx}/> 
-      <RemoveBtn chosenIdx={chosenIdx} />
+      <DownloadBtn /> 
+      <RemoveBtn />
       </>
   )
 }

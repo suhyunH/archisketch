@@ -1,29 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useLocation, useParams} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import '../scss/imagedetail.scss'
-import {ImageContext} from "../misc/useContext"
+import {CounterContext, ImageContext} from "../misc/useContext"
 import HandleBtn from '../components/HandleBtn';
+import Spinner from '../components/Spinner';
 
 function ImageDetail() {
-  const location = useLocation();
-  const initialValue = location.search.substring(1) as string ;
-  const [clickedSlide, setClickedSlide] = useState<number>(parseInt(initialValue));
   const { state, setState }= useContext(ImageContext);
-  
+  const {count, setCount} =useContext(CounterContext);
+  const [isLoading, setIsLoading] =useState(true);
+
+  console.log(count);
   const handleNext=()=>{
-    setClickedSlide((prev)=>  prev +1);
-    if(clickedSlide === state.length-1){
-      setClickedSlide(state.length-1);
+    if(count){
+      setCount(count+1);
     }
- 
+    if(count === state.length-1){
+     setCount(state.length-1);
+    }
 }
   const handlePrev=()=>{
-    setClickedSlide((prev)=> prev -1);
-    if(clickedSlide <= 0){
-       setClickedSlide(0); 
+    if(count){
+      setCount(count - 1);
+    }
+    if(count && count <= 0){
+       setCount(0); 
      }
   }
-
+  useEffect(()=>{
+    setTimeout(()=>{
+      setIsLoading(false);
+    }, 1000)
+  },[])
 
   return (
     <div>
@@ -36,21 +44,27 @@ function ImageDetail() {
             </div>
           </Link>
           <div className='handlebtn-container'>
-            <HandleBtn  clickedSlide={clickedSlide}/>
+            <HandleBtn/>
           </div>
         </div>
-        <div className='image-detail-container'>
 
-          <Link to={{pathname:`/image/${(state[clickedSlide]._id).split('/')[6]}}`, search:`${clickedSlide}`}}>
-          <button className='prev-btn' onClick={handlePrev}>&larr;</button>
-          </Link> 
-          <div className='image-content'>
-          <img src={state[clickedSlide]._id} alt="디테일 사진" />
+
+        {
+          isLoading? <Spinner /> :
+
+          <div className='image-detail-container'>
+            <Link to={`/image/${count}`}>
+            <button className='prev-btn' onClick={handlePrev}>&larr;</button>
+            </Link> 
+            <div className='image-content'>
+              {count && <img src={state[count]._id} alt="디테일 사진" />
+              }
+            </div>
+            <Link to={`/image/${count}`}>
+            <button className='next-btn' onClick={handleNext}>&rarr;</button>
+            </Link>
           </div>
-          <Link to={{pathname:`/image/${(state[clickedSlide]._id).split('/')[6]}}`, search:`${clickedSlide}`}}>
-          <button className='next-btn' onClick={handleNext}>&rarr;</button>
-          </Link>
-        </div>
+        }
 
     </div>
   )
