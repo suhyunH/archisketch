@@ -3,8 +3,6 @@ import ImageCard from '../components/ImageCard'
 import "../scss/dashboard.scss"
 import {CardContext, ImageContext} from "../misc/useContext"
 import HandleBtn from '../components/HandleBtn';
-import { Refresh } from '@material-ui/icons';
-import Modal from '../components/Modal';
 import Spinner from '../components/Spinner';
 
 

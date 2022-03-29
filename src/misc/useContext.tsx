@@ -2,6 +2,9 @@ import React, { useState, createContext } from 'react';
 import data from "../misc/mock-data.json"
 import { Data } from './model';
 
+
+//ImageContext
+
 type ImageContextProviderProps={
     children : React.ReactNode
 }
@@ -23,7 +26,7 @@ export const ImageContextProvider = ({children}:ImageContextProviderProps)=>{
 }
 
 
-//
+//CardContext
 
 type SelectedCardsProviderProps={
     children : React.ReactNode
@@ -44,7 +47,8 @@ export const SelectedCardsProvider = ({children}:SelectedCardsProviderProps)=>{
 
 }
 
-//
+//CounterContext
+
 type CounterProviderProps={
     children : React.ReactNode
 }

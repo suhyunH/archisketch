@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import DownloadBtn from './DownloadBtn';
 import '../../scss/dashboard.scss'
 import RemoveBtn from './RemoveBtn';
-import { CardContext, CounterContext } from '../../misc/useContext';
 
 
 function HandleBtn() {
