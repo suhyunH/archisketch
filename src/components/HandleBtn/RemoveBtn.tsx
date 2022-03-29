@@ -5,9 +5,10 @@ import "../../scss/modal.scss"
 interface RemoveProps{
   chosenIdx : number[];
   isDrop?:boolean
+  setIsOpen? :(v: boolean) => void 
 }
 
-function RemoveBtn({chosenIdx, isDrop }:RemoveProps) {
+function RemoveBtn({chosenIdx, isDrop , setIsOpen}:RemoveProps) {
   const { state, setState }= useContext(ImageContext);
   const {cards, setCards} = useContext(CardContext);
   const [open, setOpen] = useState<boolean>(false);
@@ -22,6 +23,9 @@ function RemoveBtn({chosenIdx, isDrop }:RemoveProps) {
       setState(newState);
       setCards(null)
       setOpen(false);
+      if(setIsOpen){
+        setIsOpen(false);
+      }
   }
 
   return (

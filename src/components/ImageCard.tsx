@@ -1,8 +1,7 @@
-import React, { MouseEventHandler, useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
 import { CardContext, ImageContext } from '../misc/useContext';
-import HandleBtn from './HandleBtn';
 import DownloadBtn from './HandleBtn/DownloadBtn';
 import RemoveBtn from './HandleBtn/RemoveBtn';
 
@@ -51,7 +50,11 @@ function ImageCard() {
                     <>
                     <div className={`option-dropdown`}>
                         <DownloadBtn chosenIdx={[parseInt(`${idx}`)]} isDrop/>
-                        <RemoveBtn chosenIdx={[parseInt(`${idx}`)]} isDrop/>
+                        <RemoveBtn 
+                        chosenIdx={[parseInt(`${idx}`)]} 
+                        isDrop
+                        setIsOpen={(v: boolean) => {setIsOpen(v)}}
+                        />
                     </div>
                     </>
                     }
