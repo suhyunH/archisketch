@@ -10,12 +10,12 @@ function App() {
     <ImageContextProvider>
       <SelectedCardsProvider>
       <CounterProvider>
-      <BrowserRouter>
+
       <Routes>
         <Route path="/" element={<Dashboard />}/>
         <Route path="/image/:id" element={<ImageDetail />}/>
       </Routes>
-      </BrowserRouter>
+
       </CounterProvider> 
       </SelectedCardsProvider>
     </ImageContextProvider>
