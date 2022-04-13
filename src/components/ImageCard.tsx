@@ -40,10 +40,9 @@ function ImageCard() {
             <li key={idx} className='card-item' >
                 <div className='card-pic' >
                     <img src={state[idx]._id}/>
-                    {/* <span className='card-view'>일인칭 뷰어</span> */}
                 </div>
                 <div className='card-hover-container'>
-                    <Link to={`/image/${(state[idx]._id).split("/")[6]}`} onClick={()=>{setCount(idx)}}>
+                    <Link to={`/image/${count}`} onClick={()=>{setCount(idx)}}>
                         <div className="card-hover"></div>
                     </Link>
                     <input className='checkbox' 

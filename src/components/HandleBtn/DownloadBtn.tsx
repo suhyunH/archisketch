@@ -13,7 +13,7 @@ function DownloadBtn({isDrop}:DownProps) {
    
     
   const setUrl = async (url:string)=>{
-      return fetch(url)
+      return fetch("https://salty-wave-82573.herokuapp.com/"+url)
       .then((response) => {
         return response.blob();
       })

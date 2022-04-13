@@ -9,8 +9,7 @@ function ImageDetail() {
   const { state, setState }= useContext(ImageContext);
   const {count, setCount} =useContext(CounterContext);
   const [isLoading, setIsLoading] =useState(true);
-  const url = (state[count]._id).split("/")[6];
-  
+
   const handleNext=()=>{
       setCount(prev => prev+1);
 
@@ -50,13 +49,13 @@ function ImageDetail() {
           isLoading? <Spinner /> :
 
           <div className='image-detail-container'>
-            <Link to={`/image/${url}`}>
+            <Link to={`/image/${count}`}>
             <button className='prev-btn' onClick={handlePrev}>&larr;</button>
             </Link> 
             <div className='image-content'>
                <img src={state[count]._id} alt="디테일 사진" />
             </div>
-            <Link to={`/image/${url}`}>
+            <Link to={`/image/${count}`}>
             <button className='next-btn' onClick={handleNext}>&rarr;</button>
             </Link>
           </div>
