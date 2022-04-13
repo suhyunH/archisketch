@@ -21,22 +21,22 @@
     height: 500px;
     margin-left: 10px;
     text-align: center;
-    .modal-img {
-      width: 100%;
-      height: 50%;
-      svg {
-        &:first-child {
-          font-size: 150px;
-          margin: 0 0 25px 40px;
-          fill: $gray;
-        }
-        &:last-child {
-          font-size: 200px;
-          margin: 25px 0 0 10px;
-          fill: $dark-blue;
-        }
-      }
-    }
+    // .modal-img {
+    //   width: 100%;
+    //   height: 50%;
+    //   svg {
+    //     &:first-child {
+    //       font-size: 150px;
+    //       margin: 0 0 25px 40px;
+    //       fill: $gray;
+    //     }
+    //     &:last-child {
+    //       font-size: 200px;
+    //       margin: 25px 0 0 10px;
+    //       fill: $dark-blue;
+    //     }
+    //   }
+    // }
     span {
       display: inline-block;
       margin-top: 20px;

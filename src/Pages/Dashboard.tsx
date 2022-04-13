@@ -52,10 +52,10 @@ function Dashboard() {
                   </div>
                   </>
                   :
-                  <span className='image-total'>{state.length}개의 렌더샷</span>
+                  <span className='image-total'>{state.length}개의 이미지</span>
             }
                     
-                    <h3>갤러리</h3>
+                    <h3>Gallery</h3>
               {cards?
                 (<>
                   <div className='handlebtn-container'>

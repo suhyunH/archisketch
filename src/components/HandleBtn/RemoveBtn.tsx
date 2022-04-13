@@ -37,10 +37,10 @@ function RemoveBtn({ isDrop , setIsOpen}:RemoveProps) {
     {open && 
         <div className='modal'>
         <div className='modal-container'>
-            <div className='modal-img'>
+            {/* <div className='modal-img'>
             <FileCopy/>
             <DeleteSweep />
-            </div>
+            </div> */}
             <div className='title'>
                 <h2>확인</h2>
             </div>
