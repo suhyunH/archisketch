@@ -38,7 +38,6 @@ function DownloadBtn({isDrop}:DownProps) {
             a.click();
             document.body.removeChild(a);
         })
-       
         };
   return (
     <>
